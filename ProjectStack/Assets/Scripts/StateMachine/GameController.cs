@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using SDA.UI;
 
 
 namespace SDA.Loop
 {
     public class GameController : MonoBehaviour
     {
+
+        [SerializeField] private MainMenuView _mainMenuView;
+
+
         private MainMenuState _mainMenuState;
         private GameState _gameState;
 
@@ -19,7 +24,7 @@ namespace SDA.Loop
         {
             _transitionToGameState += () => ChangeState(_gameState); // sztuczne stworzenie pustej bezparametrowej metody, która wywo³uje parametrow¹
 
-            _mainMenuState = new MainMenuState(_transitionToGameState);
+            _mainMenuState = new MainMenuState(_transitionToGameState, _mainMenuView);
             _gameState = new GameState();
 
             ChangeState(_mainMenuState);
