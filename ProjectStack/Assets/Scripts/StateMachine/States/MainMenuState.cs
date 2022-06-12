@@ -23,11 +23,7 @@ namespace SDA.Loop
 
         public void UpdateState()
         {
-            Debug.Log("Dupa");
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                _transitionToGameState.Invoke();
-            }
+   
         }
 
         public void DisposeState()

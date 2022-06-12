@@ -14,7 +14,6 @@ namespace SDA.Loop
 
         void IBaseState.UpdateState()
         {
-            Debug.Log("GONG");
         }
 
         void IBaseState.DisposeState()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using SDA.UI;
-
+using SDA.Input;
 
 namespace SDA.Loop
 {
@@ -11,6 +11,7 @@ namespace SDA.Loop
     {
 
         [SerializeField] private MainMenuView _mainMenuView;
+        [SerializeField] private StackInput _stackInput;
 
 
         private MainMenuState _mainMenuState;
