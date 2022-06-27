@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour, IPoolable
 {
+    [SerializeField] private MeshRenderer _meshRenderer;
+
+    [SerializeField] private Rigidbody _rb;
     public void PrepareForActivate(Vector3 position)
     {
         transform.SetParent(null);
@@ -17,6 +20,31 @@ public class Cube : MonoBehaviour, IPoolable
         this.gameObject.SetActive(false);
         this.transform.SetParent(parent);
     }
+
+    public void EnableGravity()
+    {
+        _rb.useGravity = true;
+    }
+    public void SetColor(float hue)
+    {
+        _meshRenderer.material.color = Color.HSVToRGB(hue, 1f, 1f);
+    }
+
+    public void SetColor(float hue, float value)
+    {
+        _meshRenderer.material.color = Color.HSVToRGB(hue, 1f, value);
+    }
+
+    public void SetColor(Color color)
+    {
+        _meshRenderer.material.color = color;
+    }
+
+    public Color GetColor()
+    {
+        return _meshRenderer.material.color;
+    }
+
 
 
 
