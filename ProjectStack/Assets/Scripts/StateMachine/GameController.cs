@@ -11,10 +11,13 @@ namespace SDA.Loop
     {
 
         [SerializeField] private MainMenuView _mainMenuView;
+        [SerializeField] private GameView _gameView;
         [SerializeField] private StackInput _stackInput;
         [SerializeField] private CubePool _cubePool;
+        [SerializeField] private LoweringSystem _loweringSystem;
 
         private MovementSystem _movementSystem;
+        private PointSystem _pointSystem;
 
 
         private MainMenuState _mainMenuState;
@@ -28,10 +31,13 @@ namespace SDA.Loop
         {
             _transitionToGameState += () => ChangeState(_gameState); // sztuczne stworzenie pustej bezparametrowej metody, która wywo³uje parametrow¹
 
-            _movementSystem = new MovementSystem();
+            _movementSystem = new MovementSystem(_loweringSystem.InitCube);
+            _pointSystem = new PointSystem();
 
             _mainMenuState = new MainMenuState(_transitionToGameState, _mainMenuView);
-            _gameState = new GameState(_movementSystem, _stackInput, _cubePool);
+            _gameState = new GameState(_movementSystem, _stackInput, _cubePool, _loweringSystem, _pointSystem, _gameView);
+
+            _currentlyActiveState = _mainMenuState;
             
             ChangeState(_gameState);
         }
